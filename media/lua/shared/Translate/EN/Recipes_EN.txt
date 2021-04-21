@@ -1,0 +1,4 @@
+Recipe_EN = {
+	Recipe_Remove_knife = "Unscrew from the scabbard",
+	Recipe_Sheath_knife = "Screw into the scabbard",
+}

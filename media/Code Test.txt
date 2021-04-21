@@ -1,0 +1,23 @@
+<m_Conditions>
+		<m_Name>nearWallCrouching</m_Name>
+		<m_Type>BOOL</m_Type>
+		<m_BoolValue>true</m_BoolValue>
+</m_Conditions>
+	
+	
+<m_Conditions>
+		<m_Name>isTurningAround</m_Name>
+		<m_Type>BOOL</m_Type>
+		<m_BoolValue>false</m_BoolValue>
+</m_Conditions>
+
+
+
+print(type(WeaponType.getWeaponType(getPlayer())))
+print(WeaponType.getWeaponType(getPlayer()).getType())
+for i, j in pairs(getmetatable(WeaponType.getWeaponType(getPlayer()))) do print(j) end
+for i, j in pairs(getmetatable(WeaponType.getWeaponType(getPlayer()))) do for m, k in pairs(j) do print(m, ":", k) end end
+
+
+getPlayer():setVariable("Weapon", "trolley")
+getPlayer():setVariable("W", "trolley")

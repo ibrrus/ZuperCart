@@ -1,0 +1,4 @@
+Tooltip_RU = {
+	Tooltip_item_Jagdkommando = "—пиральный нож с трем€ лезви€ми. ≈сли вкручен<br>в ножны может использоватьс€ как дубинка.",
+	Tooltip_item_JagdkommandoCase = "Ќожны дл€ спирального ножа 'Jagdkommando'.<br>ѕозвол€ют использовать нож, как дубинку.",
+}

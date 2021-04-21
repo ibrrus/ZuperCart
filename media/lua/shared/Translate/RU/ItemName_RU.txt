@@ -1,0 +1,5 @@
+ItemName_RU = {
+	ItemName_Base.Jagdkommando = "Нож 'Jagdkommando'",
+	ItemName_Base.JagdkommandoOnCase = "Нож 'Jagdkommando' в ножнах",
+	ItemName_Base.JagdkommandoCase = "Ножны 'Jagdkommando'",
+}
