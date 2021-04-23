@@ -4,7 +4,7 @@ module Base
 	{
 		mesh = weapons/2handed/trolley|cart,
 		texture = weapons/2handed/trolley,
-		scale = 0.0030,
+		scale = 0.0028,
 		invertX = true,
 		attachment world
 		{
