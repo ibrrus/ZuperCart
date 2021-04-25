@@ -1,0 +1,5 @@
+Export
+
+Scale: 0.01
+Forward: Z Forward
+Up: Y Up
