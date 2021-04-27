@@ -35,5 +35,40 @@ function onEquipTrolleyTick()
     end
 end
 
+function trolleyContext (player, context, items) 
+	playerObj = getSpecificPlayer(player)
+	local option = context:addOption(getText("ContextMenu_Equip"), items, onWearTrolley, playerObj);
+end
+
+function onWearTrolley (items, playerObj)
+	-- items = ISInventoryPane.getActualItems(items)
+	for i,item in pairs(items) do
+		print(i)
+		print(item)
+		-- print(items[1]:canBeEquipped())
+		print(item:canBeEquipped())
+		if items[1]:canBeEquipped() == "Trolley" then
+			playerObj:getBodyLocationGroup():getOrCreateLocation("Trolley");
+			playerObj:setWornItem(item:canBeEquipped(), item);
+			getPlayerInventory(playerObj:getPlayerNum()):refreshBackpacks();
+			print("2123")
+			-- 
+			-- ISTimedActionQueue.add(ISWearClothing:new(playerObj, items[0], 50));
+		end
+	end
+	
+end
+
+-- 
+
+-- Console code:
+-- print(getPlayer():getVariableString("Ext"))
+-- getPlayer():initWornItems("Trolley")
+
+-- blg = getPlayer():getBodyLocationGroup()
+-- blg:getOrCreateLocation("Trolley")
+
 -- Events.OnEquipPrimary.Add(onEquipTrolley);
+
+Events.OnFillInventoryObjectContextMenu.Add(trolleyContext);
 Events.OnTick.Add(onEquipTrolleyTick);
