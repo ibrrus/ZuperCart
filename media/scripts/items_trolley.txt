@@ -1,6 +1,6 @@
 module Base
 {
-	model Trolley
+	model TrolleyModel
 	{
 		mesh = weapons/2handed/trolley|cart,
 		texture = weapons/2handed/trolley,
@@ -20,7 +20,7 @@ module Base
 		RequiresEquippedBothHands = true,
 		DisplayName	=	Trolley,
 		SwingAnim	=	Bat,
-		WeaponSprite	=	Trolley,
+		WeaponSprite	=	TrolleyModel,
         MinAngle	=	0.72,
         MinimumSwingTime	=	3,
         KnockBackOnNoDeath = TRUE,
@@ -44,8 +44,8 @@ module Base
         MetalValue = 150,
         CriticalChance	=	25,
         CritDmgMultiplier = 3,
-        MinDamage	=	0.6,
-        MaxDamage	=	1.1,
+        MinDamage	=	0.0,
+        MaxDamage	=	0.1,
         BaseSpeed = 1,
         TwoHandWeapon = TRUE,
      	WeaponLength = 0.4,
@@ -54,12 +54,11 @@ module Base
     {
 		WeightReduction	=	100,
 		Weight = 40,
+		RequiresEquippedBothHands = true,
 		Type	=	Container,
 		Capacity	=	50,
 		Icon	=	Crowbar,
-		DisplayName	=	Trolley,
-		CanBeEquipped = Trolley,
-		BodyLocation = Trolley, 
+		DisplayName	=	TrolleyContainer,
         RunSpeedModifier = 0.97,
     }
 }
