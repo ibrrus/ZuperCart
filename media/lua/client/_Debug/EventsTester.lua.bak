@@ -1,5 +1,7 @@
+EventsTester = {}
 
-local function tb(object, a, b, c, d)
+
+local function EventsTesterCommon(object, a, b, c, d)
 	print("tb ", object, " ", a, " ", b, " ", c, " ", d )
 end
 local function tb2()
@@ -118,10 +120,10 @@ local function LoadGridsquare(object)
 	-- object == IsoGridSquare
 end
 
-Events.LoadGridsquare.Add(LoadGridsquare)
-Events.OnGameBoot.Add(OnGameBoot)
-Events.OnPreGameStart.Add(OnPreGameStart)
-Events.OnInitWorld.Add(OnInitWorld)
+-- Events.LoadGridsquare.Add(LoadGridsquare)
+-- Events.OnGameBoot.Add(OnGameBoot)
+-- Events.OnPreGameStart.Add(OnPreGameStart)
+-- Events.OnInitWorld.Add(OnInitWorld)
 
 
 -- Events.OnTick.Add(OnTick)
@@ -168,6 +170,30 @@ Events.OnJoypadActivate.Add(OnJoypadActivate)
 -- Events.OnWeaponSwingHitPoint.Add(tb)
 
 
+-- CONNECT
+
+function EventsTester.OnConnected(object, a, b, c, d)
+	print("EventsTester.OnConnected ", object, " ", a, " ", b, " ", c, " ", d )
+end
+
+function EventsTester.OnDisconnect(object, a, b, c, d)
+	print("EventsTester.OnDisconnect ", object, " ", a, " ", b, " ", c, " ", d )
+end
+
+function EventsTester.OnMainMenuEnter(object, a, b, c, d)
+	print("EventsTester.OnMainMenuEnter ", object, " ", a, " ", b, " ", c, " ", d )
+	-- Срабатывает:
+	-- 		выхода в главное меню из игры
+	-- object == NIL
+end
+
+Events.OnConnectFailed.Add(EventsTesterCommon)
+Events.OnConnected.Add(EventsTester.OnConnected)
+Events.OnDisconnect.Add(EventsTester.OnDisconnect)
+Events.OnConnectionStateChanged.Add(EventsTesterCommon)
+-- Events.OnMainMenuEnter.Add(EventsTester.OnMainMenuEnter)
+--------------------------
+
 
 -- Events.OnPlayerAttackFinished.Add(tb)
 -- Events.OnLoginState.Add(tb)
@@ -181,10 +207,7 @@ Events.OnJoypadActivate.Add(OnJoypadActivate)
 -- Events.OnDoTileBuilding.Add(tb)
 -- Events.OnDoTileBuilding2.Add(tb)
 -- Events.OnDoTileBuilding3.Add(tb)
--- Events.OnConnectFailed.Add(tb)
--- Events.OnConnected.Add(tb)
--- Events.OnDisconnect.Add(tb)
--- Events.OnConnectionStateChanged.Add(tb)
+
 -- Events.OnScoreboardUpdate.Add(tb)
 -- Events.OnMouseMove.Add(tb)
 -- Events.OnMouseDown.Add(tb)
@@ -197,8 +220,8 @@ Events.OnJoypadActivate.Add(OnJoypadActivate)
 -- Events.AddXP.Add(tb)
 -- Events.LevelPerk.Add(tb)
 -- Events.OnSave.Add(tb)
--- Events.OnMainMenuEnter.Add(tb)
-Events.OnPreMapLoad.Add(tb)
+
+-- Events.OnPreMapLoad.Add(tb)
 
 local function OnPost(object, a, b, c, d)
 	print("OnPost: ", object, " ", a, " ", b, " ", c, " ", d )
@@ -210,7 +233,7 @@ end
 -- Events.OnPostTileDraw.Add(OnPost)
 -- Events.OnPostWallSquareDraw.Add(OnPost)
 -- Events.OnPostCharactersSquareDraw.Add(OnPost)
-Events.OnPostMapLoad.Add(OnPost)
+-- Events.OnPostMapLoad.Add(OnPost)
 -- Events.OnPostSave.Add(OnPost)
 -- Events.OnPostRender.Add(tb)
 
@@ -231,9 +254,9 @@ Events.OnPostMapLoad.Add(OnPost)
 -- Events.OnPlayerMove.Add(tb)
 -- Events.OnInitWorld.Add(tb)
 -- Events.OnNewGame.Add(tb)
-Events.OnIsoThumpableLoad.Add(tb)
-Events.OnIsoThumpableSave.Add(tb)
-Events.ReuseGridsquare.Add(tb)
+-- Events.OnIsoThumpableLoad.Add(tb)
+-- Events.OnIsoThumpableSave.Add(tb)
+-- Events.ReuseGridsquare.Add(tb)
 
 
 -- TIME
@@ -260,7 +283,7 @@ Events.ReuseGridsquare.Add(tb)
 -- Events.OnFillContainer.Add(tb)
 -- Events.OnChangeWeather.Add(tb)
 -- Events.OnRenderTick.Add(tb)
-Events.OnJoypadActivateUI.Add(OnJoypadActivateUI)
+-- Events.OnJoypadActivateUI.Add(OnJoypadActivateUI)
 -- Events.OnDestroyIsoThumpable.Add(tb)
 
 -- Events.OnResolutionChange.Add(tb)

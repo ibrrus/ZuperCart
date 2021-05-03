@@ -9,14 +9,14 @@ module Base
 		attachment world
 		{
 			offset = 0.0000 0.0000 0.0000,
-			rotate = 0.0000 0.0000 0.0000,
+			rotate = 0.0000 90.0000 0.0000,
 		}
 	}
 
 	item Trolley
     {
 		Type	=	Weapon,
-		Weight = 10,
+		Weight = 0.1,
 		RequiresEquippedBothHands = true,
 		DisplayName	=	Trolley,
 		SwingAnim	=	Bat,
@@ -37,7 +37,7 @@ module Base
         SwingTime	=	3,
         HitAngleMod	=	-30,
         KnockdownMod	=	0,
-        Icon	=	Crowbar,
+        Icon	=	Trolley,
         RunAnim	=	Run_Weapon2,
         BreakSound  =   BreakMetalItem,
         TreeDamage  =   0,
@@ -53,12 +53,16 @@ module Base
 	item TrolleyContainer
     {
 		WeightReduction	=	100,
-		Weight = 40,
+		Weight = 24,
 		RequiresEquippedBothHands = true,
 		Type	=	Container,
 		Capacity	=	50,
-		Icon	=	Crowbar,
-		DisplayName	=	TrolleyContainer,
+		Icon = Trolley,
+		UseWorldItem = true,
+		ScaleWorldIcon = 0.47,
+		WorldStaticModel = TrolleyModel,
+		DisplayName	=	Trolley,
         RunSpeedModifier = 0.97,
+		ReplaceInSecondHand = Bag_TEST testsdh,
     }
 }
