@@ -32,6 +32,7 @@ function ISTakeTrolley:stop()
 end
 
 function ISTakeTrolley:perform()
+	forceDropHeavyItems(self.character)
 	local queuedItem = table.remove(self.queueList, 1);
 	for i,item in ipairs(queuedItem.items) do
 		self.item = item

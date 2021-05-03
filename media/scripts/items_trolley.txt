@@ -12,6 +12,19 @@ module Base
 			rotate = 0.0000 90.0000 0.0000,
 		}
 	}
+	
+	model TrolleyModel2
+	{
+		mesh = weapons/2handed/trolley|cartWithBaggage,
+		texture = weapons/2handed/trolley,
+		scale = 0.3,
+		invertX = true,
+		attachment world
+		{
+			offset = 0.0000 0.0000 0.0000,
+			rotate = 0.0000 90.0000 0.0000,
+		}
+	}
 
 	item Trolley
     {
@@ -19,7 +32,7 @@ module Base
 		Weight = 0.1,
 		RequiresEquippedBothHands = true,
 		DisplayName	=	Trolley,
-		WeaponSprite	=	TrolleyModel,
+		WeaponSprite	=	TrolleyModel2,
         ConditionMax	=	15,
         Icon	=	Trolley,
         RunAnim	=	Run_Weapon2,
@@ -33,7 +46,7 @@ module Base
 		Weight = 24,
 		RequiresEquippedBothHands = true,
 		Type	=	Container,
-		Capacity	=	50,
+		Capacity	=	79,
 		Icon = Trolley,
 		UseWorldItem = true,
 		ScaleWorldIcon = 0.47,
@@ -43,5 +56,22 @@ module Base
 		StaticModel = TrolleyModel,
 		ReplaceInPrimaryHand = TrolleyModel Trolley,
 		ReplaceInSecondHand = TrolleyModel Trolley,
+    }
+	item TrolleyContainer2
+    {
+		WeightReduction	=	100,
+		Weight = 24,
+		RequiresEquippedBothHands = true,
+		Type	=	Container,
+		Capacity	=	79,
+		Icon = Trolley2,
+		UseWorldItem = true,
+		ScaleWorldIcon = 0.47,
+		WorldStaticModel = TrolleyModel,
+		DisplayName	=	Trolley,
+        RunSpeedModifier = 0.97,
+		StaticModel = TrolleyModel2,
+		ReplaceInPrimaryHand = TrolleyModel2 Trolley,
+		ReplaceInSecondHand = TrolleyModel2 Trolley,
     }
 }

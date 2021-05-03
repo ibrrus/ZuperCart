@@ -23,30 +23,87 @@ function onEquipTrolleyTick()
 	for playerNum = 0, playersSum - 1 do
 		local playerObj = getSpecificPlayer(playerNum)
 		if playerObj then
-			if playerObj:getVariableString("Weapon") ~= "trolley" then
+			-- Выбрасывание лишней тележки
+			local playerInv = playerObj:getInventory()
+			if (playerInv:getItemCount("Base.TrolleyContainer") + 
+					playerInv:getItemCount("Base.TrolleyContainer2")) > 1 then
+				local trolForDrop = playerInv:getFirstType("Base.TrolleyContainer")
+				if playerObj:getPrimaryHandItem() == trolForDrop then
+					trolForDrop = playerInv:getItemFromTypeRecurse("Base.TrolleyContainer")
+				end
+				if trolForDrop then
+					playerInv:Remove(trolForDrop)
+					local dropX,dropY,dropZ = ISInventoryTransferAction.GetDropItemOffset(playerObj, playerObj:getCurrentSquare(), trolForDrop)
+					playerObj:getCurrentSquare():AddWorldInventoryItem(trolForDrop, dropX, dropY, dropZ)
+					playerObj:removeFromHands(trolForDrop)
+				else 
+					trolForDrop = playerInv:getFirstType("Base.TrolleyContainer2")
+					if playerObj:getPrimaryHandItem() == trolForDrop then
+						trolForDrop = playerInv:getItemFromTypeRecurse("Base.TrolleyContainer2")
+					end
+					if trolForDrop then
+						playerInv:Remove(trolForDrop)
+						local dropX,dropY,dropZ = ISInventoryTransferAction.GetDropItemOffset(playerObj, playerObj:getCurrentSquare(), trolForDrop)
+						playerObj:getCurrentSquare():AddWorldInventoryItem(trolForDrop, dropX, dropY, dropZ)
+						playerObj:removeFromHands(trolForDrop)
+					end
+				end
+			elseif (playerInv:getItemCount("Base.TrolleyContainer") == 1 or 
+					playerInv:getItemCount("Base.TrolleyContainer2") == 1) then
+				local trolForEquip = playerInv:getFirstType("Base.TrolleyContainer")
+				local trolForEquip2 = playerInv:getFirstType("Base.TrolleyContainer2")
+				if trolForEquip then
+					-- Замена на другой контейнер
+					trolCont = trolForEquip:getItemContainer()
+					if not trolCont:isEmpty() then
+						playerInv:Remove(trolForEquip)
+						trolForEquip = playerInv:AddItem("Base.TrolleyContainer2")
+						trolForEquip:setItemContainer(trolCont)
+					end
+					-- Тележка сразу берется в руки
+					if playerObj:getPrimaryHandItem() ~= trolForEquip then
+						playerObj:setPrimaryHandItem(trolForEquip)
+						playerObj:setSecondaryHandItem(trolForEquip)
+						getPlayerData(playerObj:getPlayerNum()).playerInventory:refreshBackpacks();
+					end
+					
+				elseif trolForEquip2 then
+					-- Замена на другой контейнер
+					trolCont = trolForEquip2:getItemContainer()
+					if trolCont:isEmpty() then
+						playerInv:Remove(trolForEquip2)
+						trolForEquip2 = playerInv:AddItem("Base.TrolleyContainer")
+						trolForEquip2:setItemContainer(trolCont)
+					end
+					if playerObj:getPrimaryHandItem() ~= trolForEquip2 then
+						playerObj:setPrimaryHandItem(trolForEquip2)
+						playerObj:setSecondaryHandItem(trolForEquip2)
+						getPlayerData(playerObj:getPlayerNum()).playerInventory:refreshBackpacks();
+					end
+				end
+			end
+
+			
+			-- Задание переменной для анимации
+			if playerObj:getVariableString("Weapon") ~= "trolley" then -- print(getPlayer():getVariableString("Weapon"))
 				local _item = playerObj:getPrimaryHandItem()
 				local _item2 = playerObj:getSecondaryHandItem()
-				if _item and _item:getScriptItem():getName() == "Trolley" then
+				if _item and (_item:getScriptItem():getName() == "TrolleyContainer" or 
+						_item:getScriptItem():getName() == "TrolleyContainer2") then
 					playerObj:setVariable("Weapon", "trolley")
-				elseif _item and _item:getScriptItem():getName() == "TrolleyContainer" then
+				elseif _item2 and (_item2:getScriptItem():getName() == "TrolleyContainer" or 
+						_item2:getScriptItem():getName() == "TrolleyContainer2") then
 					playerObj:setVariable("Weapon", "trolley")
-				elseif _item2 and _item2:getScriptItem():getName() == "Trolley" then
-					playerObj:setVariable("Weapon", "trolley")
-				elseif _item2 and _item2:getScriptItem():getName() == "TrolleyContainer" then
-					playerObj:setVariable("Weapon", "trolley")
-					local trolWeapon = InventoryItemFactory.CreateItem("Base.Trolley")
-					-- trolWeapon:setContainer(_item2:getContainer())
-					-- playerObj:setPrimaryHandItem(trolWeapon);
-					-- playerObj:setSecondaryHandItem(trolWeapon);
 				end
 			else
+				-- Выбрасывание тележки при столкновениях и пр.
 				if not (playerObj:getCurrentState() == IdleState.instance()) then
 					sqr = playerObj:getSquare()
-					playerObj:setPrimaryHandItem(nil);
 					trol = playerObj:getSecondaryHandItem()
-					playerObj:setSecondaryHandItem(nil);
 					playerObj:getInventory():DoRemoveItem(trol)
 					sqr:AddWorldInventoryItem(trol, 0, 0, 0);
+					playerObj:setPrimaryHandItem(nil);
+					playerObj:setSecondaryHandItem(nil);
 				end
 			end
 			

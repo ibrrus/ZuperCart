@@ -1,6 +1,6 @@
 Export
 
-Scale: 0.01
+Scale: 0.0097
 Forward: Z Forward
 Up: Y Up
 
