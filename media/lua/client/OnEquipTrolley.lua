@@ -28,25 +28,19 @@ function onEquipTrolleyTick()
 				local _item2 = playerObj:getSecondaryHandItem()
 				if _item and _item:getScriptItem():getName() == "Trolley" then
 					playerObj:setVariable("Weapon", "trolley")
-					local trolWeapon = InventoryItemFactory.CreateItem("Base.Trolley")
-					-- playerObj:setPrimaryHandItem(trolWeapon);
-					-- playerObj:setSecondaryHandItem(trolWeapon);
-					print("OK")
-				elseif _item and _item:getScriptItem():getName() == "Trolley" then
+				elseif _item and _item:getScriptItem():getName() == "TrolleyContainer" then
 					playerObj:setVariable("Weapon", "trolley")
 				elseif _item2 and _item2:getScriptItem():getName() == "Trolley" then
 					playerObj:setVariable("Weapon", "trolley")
-					local trolWeapon = InventoryItemFactory.CreateItem("Base.Trolley")
-					-- playerObj:setPrimaryHandItem(trolWeapon);
-					-- playerObj:setSecondaryHandItem(trolWeapon);
-					print("OK")
 				elseif _item2 and _item2:getScriptItem():getName() == "TrolleyContainer" then
+					playerObj:setVariable("Weapon", "trolley")
 					local trolWeapon = InventoryItemFactory.CreateItem("Base.Trolley")
-					playerObj:setPrimaryHandItem(trolWeapon);
+					-- trolWeapon:setContainer(_item2:getContainer())
+					-- playerObj:setPrimaryHandItem(trolWeapon);
 					-- playerObj:setSecondaryHandItem(trolWeapon);
 				end
 			else
-				if playerObj:getCurrentState() == ClimbOverFenceState.instance() then
+				if not (playerObj:getCurrentState() == IdleState.instance()) then
 					sqr = playerObj:getSquare()
 					playerObj:setPrimaryHandItem(nil);
 					trol = playerObj:getSecondaryHandItem()
@@ -58,16 +52,6 @@ function onEquipTrolleyTick()
 			
 		end
 		-- print(playerObj:getCurrentState())
-		
-		-- print(playerObj:getVariable("ClimbingFence"))
-		-- -- print(getmetatable(playerObj:getVariable("ClimbingFence")))
-		-- if playerObj:getVariable("ClimbingFence") then
-			-- print(getmetatable(playerObj:getVariable("ClimbingFence")))
-			-- playerObj:setVariable("ClimbingFence", nil)
-		-- end
-		-- print(type(playerObj:getVariable("ClimbingFence")))
-		-- print(getmetatable(playerObj:getVariable("ClimbingFence")))
-		-- for i, j in pairs(playerObj:getVariable("ClimbingFence")) do print(j) end
     end
 end
 
@@ -142,75 +126,12 @@ end
 function TrolleyOnEquipPrimary(playerObj, item)
 	print("2. TrolleyOnEquipPrimary: ", item)
 	if item and item:getScriptItem():getName() == "TrolleyContainer" then
-		-- local trolContainer = item:getItemContainer()
-		-- playerObj:removeFromHands(item)
-		-- playerObj:removeWornItem(item)
-		-- playerObj:getInventory():DoRemoveItem(item)
 		local trolWeapon = InventoryItemFactory.CreateItem("Base.Trolley")
-		-- trolWeapon:setRightClickContainer(trolContainer)
-		-- trolWeapon:setContainer(trolContainer)
-		-- trolWeapon = playerObj:getInventory():DoAddItem(trolWeapon)
-		-- playerObj:setPrimaryHandItem(nil);
-		-- playerObj:setSecondaryHandItem(nil);
 		playerObj:setPrimaryHandItem(trolWeapon)
 		playerObj:setSecondaryHandItem(trolWeapon)
-		-- print("getMod ID1: ", trolWeapon:getID())
 		playerObj:getModData()["handTrolley"] = true
-	-- elseif (not item or not item:getScriptItem():getName() == "TrolleyContainer") and playerObj:getModData()["handTrolley"] then
-			-- playerObj:setPrimaryHandItem(nil);
-			-- playerObj:setSecondaryHandItem(nil);
-			-- playerObj:getModData()["handTrolley"] = nil 
 	end
 	print("END: ", playerObj:getModData()["handTrolley"])
-	--print(getPlayer():getModData()["handTrolley"])
-	
-	-- if playerObj:getModData()["handTrolley"] and not (item1 and item1:getScriptItem():getName() == "TrolleyContainer") and not (item2 and item2:getScriptItem():getName() == "TrolleyContainer") then
-	-- and not (item1:getScriptItem():getName() == "Trolley" or item2:getScriptItem():getName() == "Trolley") then
-		-- local trolWeapon = playerObj:getInventory():getItemById(playerObj:getModData()["handTrolley"])
-		-- print ("TROLWEAPON: ", trolWeapon)
-		-- if trolWeapon then
-			-- local trolContainer = trolWeapon:getRightClickContainer()
-			-- playerObj:removeFromHands(trolWeapon)
-			-- playerObj:removeWornItem(trolWeapon)
-			-- playerObj:getInventory():DoRemoveItem(trolWeapon)
-			-- playerObj:setPrimaryHandItem(nil);
-			-- playerObj:setSecondaryHandItem(nil);
-			-- local trol = InventoryItemFactory.CreateItem("Base.TrolleyContainer")
-			-- trol:setItemContainer(trolContainer)
-			-- playerObj:getInventory():DoAddItem(trol)
-			-- playerObj:getModData()["handTrolley"] = nil --print(getPlayer():getModData()["handTrolley"])
-		-- end
-	-- elseif item1 and item1:getScriptItem():getName() == "TrolleyContainer" then
-		-- local trolContainer = item1:getItemContainer()
-		-- playerObj:removeFromHands(item1)
-		-- playerObj:removeWornItem(item1)
-		-- playerObj:getInventory():DoRemoveItem(item1)
-		-- local trolWeapon = InventoryItemFactory.CreateItem("Base.Trolley")
-		-- trolWeapon:setRightClickContainer(trolContainer)
-		-- trolWeapon = playerObj:getInventory():DoAddItem(trolWeapon)
-		-- playerObj:setPrimaryHandItem(nil);
-		-- playerObj:setSecondaryHandItem(nil);
-		-- playerObj:setPrimaryHandItem(trolWeapon)
-		-- playerObj:setSecondaryHandItem(trolWeapon)
-		-- print("getMod ID1: ", trolWeapon:getID())
-		-- playerObj:getModData()["handTrolley"] = trolWeapon:getID()
-		
-	-- elseif item2 and item2:getScriptItem():getName() == "TrolleyContainer" then
-		-- local trolContainer = item2:getItemContainer()
-		-- playerObj:removeFromHands(item2)
-		-- playerObj:removeWornItem(item2)
-		-- playerObj:getInventory():DoRemoveItem(item2)
-		-- local trolWeapon = InventoryItemFactory.CreateItem("Base.Trolley")
-		-- trolWeapon:setRightClickContainer(trolContainer)
-		-- playerObj:getInventory():DoAddItem(trolWeapon)
-		-- playerObj:setPrimaryHandItem(nil);
-		-- playerObj:setSecondaryHandItem(nil);
-		-- playerObj:setPrimaryHandItem(trolWeapon)
-		-- playerObj:setSecondaryHandItem(trolWeapon)
-		-- print("getMod ID2: ", trolWeapon:getID())
-		-- playerObj:getModData()["handTrolley"] = trolWeapon:getID()
-	-- end
-
 end
 
 function TrolleyOnEquipSecondary(playerObj, item)
@@ -269,51 +190,101 @@ function TrolleyOnSave()
 	end
 end
 
+function ISWorldObjectContextMenu.getWorldObjectsOnSquares(squares, worldObjects)
+	for _,square in ipairs(squares) do
+		local squareObjects = square:getWorldObjects()
+		for i=1,squareObjects:size() do
+			local worldObject = squareObjects:get(i-1)
+			table.insert(worldObjects, worldObject)
+		end
+	end
+end
+
 function TrolleyOnFillWorldObjectContextMenu(player, context, worldobjects, test)
 	-- print(test)
-	print(context)
-	-- print(getText("ContextMenu_Grab"))
-	local numSubOption = context:getOptionFromName(getText("ContextMenu_Grab")).subOption
-	local subContext = context.instanceMap[numSubOption] -- context
-	-- print(getText("DisplayName_Trolley"))
-	local subMenu = subContext:getOptionFromName(getText("DisplayName_Trolley"))
-	print("subMenu ", subMenu)
+	-- print(context)
+	local playerObj = getSpecificPlayer(player)
+	local squares = {}
+	local doneSquare = {}
+	for i,v in ipairs(worldobjects) do
+		if v:getSquare() and not doneSquare[v:getSquare()] then
+			doneSquare[v:getSquare()] = true
+			table.insert(squares, v:getSquare())
+		end
+	end
+	if #squares == 0 then return false end
 	
-	-- print(context:getOptionFromName().subOption)
-	-- print(context.instanceMap[1].options)
-	-- context.instanceMap
-	
-	
-	-- for i,v in ipairs(context.instanceMap[1].options) do
-		-- print(v.name)
-	-- end
-	
+	local worldObjects = {}
+	if JoypadState.players[player+1] then
+		for _,square in ipairs(squares) do
+			for i=1,square:getWorldObjects():size() do
+				local worldObject = square:getWorldObjects():get(i-1)
+				table.insert(worldObjects, worldObject)
+			end
+		end
+	else
+		local squares2 = {}
+		for k,v in pairs(squares) do
+			squares2[k] = v
+		end
+		local radius = 1
+		for _,square in ipairs(squares2) do
+			ISWorldObjectContextMenu.getSquaresInRadius(square:getX(), square:getY(), square:getZ(), radius, doneSquare, squares)
+		end
+		ISWorldObjectContextMenu.getWorldObjectsOnSquares(squares, worldObjects)
+	end
+	if #worldObjects == 0 then return false end
+	for _,worldObject in ipairs(worldObjects) do
+		if worldObject:getItem():getType() == "TrolleyContainer" then
+			-- context:removeOption(context:getOptionFromName(getText("ContextMenu_Grab")))
+			-- worldObject:getItem():setContainer(nil)
+			-- print(worldObject:getItem():getContainer())
+			local old_option_update = context:getOptionFromName(getText("ContextMenu_Grab"))
+			if old_option_update then
+				context:updateOption(old_option_update.id, getText("ContextMenu_GrabTrolley"), playerObj, ISWorldObjectContextMenu.equipTrolley, worldObject)
+				return
+			end				
+		end
+	end
 end
+
+ISWorldObjectContextMenu.equipTrolley = function(playerObj, WItem)
+    if WItem:getSquare() and luautils.walkAdj(playerObj, WItem:getSquare()) then
+		if playerObj:getPrimaryHandItem() then
+			ISTimedActionQueue.add(ISUnequipAction:new(playerObj, playerObj:getPrimaryHandItem(), 50));
+		end
+		if playerObj:getSecondaryHandItem() and playerObj:getSecondaryHandItem() ~= playerObj:getPrimaryHandItem() then
+			ISTimedActionQueue.add(ISUnequipAction:new(playerObj, playerObj:getSecondaryHandItem(), 50));
+		end
+		local time = ISWorldObjectContextMenu.grabItemTime(playerObj, WItem)
+		ISTimedActionQueue.add(ISTakeTrolley:new(playerObj, WItem, time))
+	end
+end
+
+
+-- ISWorldObjectContextMenu.onTakeTrolley = function(worldobjects, generator, player)
+	-- local playerObj = getSpecificPlayer(player)
+	-- if luautils.walkAdj(playerObj, generator:getSquare()) then
+		-- if playerObj:getPrimaryHandItem() then
+			-- ISTimedActionQueue.add(ISUnequipAction:new(playerObj, playerObj:getPrimaryHandItem(), 50));
+		-- end
+		-- if playerObj:getSecondaryHandItem() and playerObj:getSecondaryHandItem() ~= playerObj:getPrimaryHandItem() then
+			-- ISTimedActionQueue.add(ISUnequipAction:new(playerObj, playerObj:getSecondaryHandItem(), 50));
+		-- end
+		-- ISTimedActionQueue.add(ISTakeGenerator:new(player, generator, 100));
+	-- end
+-- end
+
+
+
 
 function isForceDropHeavyItem(item)
     return (item ~= nil) and (item:getType() == "Generator" or item:getType() == "CorpseMale" or item:getType() == "CorpseFemale" or item:getType() == "TrolleyContainer")
 end
 
--- 
-
--- Console code:
--- print(getPlayer():getVariableString("Ext"))
--- getPlayer():initWornItems("Trolley")
-
--- blg = getPlayer():getBodyLocationGroup()
--- blg:getOrCreateLocation("Trolley")
-
--- Events.OnEquipPrimary.Add(onEquipTrolley);
-Events.OnEquipPrimary.Add(TrolleyOnEquipPrimary);
-Events.OnEquipSecondary.Add(TrolleyOnEquipSecondary);
-
-Events.OnFillWorldObjectContextMenu.Add(TrolleyOnFillWorldObjectContextMenu);
-
-
--- Events.OnClothingUpdated.Add(TrolleyOnClothingUpdated);
+-- Events.OnEquipPrimary.Add(TrolleyOnEquipPrimary);
+-- Events.OnEquipSecondary.Add(TrolleyOnEquipSecondary);
+-- Events.OnFillWorldObjectContextMenu.Add(TrolleyOnFillWorldObjectContextMenu);
 Events.OnFillInventoryObjectContextMenu.Add(trolleyContext);
 Events.OnTick.Add(onEquipTrolleyTick);
--- Events.OnSave.Add(TrolleyOnSave);
--- Events.OnObjectAdded.Add(TrolleyOnObjectAdded);
-
 Events.OnRefreshInventoryWindowContainers.Add(addTrolleyButton);

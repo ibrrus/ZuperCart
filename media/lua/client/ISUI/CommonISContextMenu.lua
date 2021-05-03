@@ -7,13 +7,13 @@ function ISContextMenu:updateOption(id, name, target, onSelect, param1, param2, 
 end
 
 
--- context:updateSubOption("ContextMenu_Grab"
+-- context:updateSubOption(getText("ContextMenu_Grab"), getText("ContextMenu_TrolleyContainer"),
 function ISContextMenu:updateSubOption(parentMenuName, subMenuName, newFunc, param1, param2, param3, param4, param5, param6, param7, param8, param9, param10)
-	local numSubOption = self:getOptionFromName(getText(parentMenuName)).subOption
+	local numSubOption = self:getOptionFromName(parentMenuName).subOption
 	local subContext = self.instanceMap[numSubOption] -- context
-	local subMenu = subContext:getOptionFromName(getText(subMenuName))
+	local subMenu = subContext:getOptionFromName(subMenuName)
 	local option = self:allocOption(subMenu.name, subMenu.target, newFunc, param1, param2, param3, param4, param5, param6, param7, param8, param9, param10);
-	subMenu.options[subMenu.id] = option;
+	subContext.options[subMenu.id] = option;
 	return option;
 end
 
@@ -29,6 +29,18 @@ function ISContextMenu:removeOption(option)
 		end
 		self.numOptions = self.numOptions - 1;
 		self:calcHeight()
+	end
+end
+
+function ISContextMenu:getOptionFromItemName(name)
+	for i,v in ipairs(self.options) do
+		print(v.param1)
+		for m,n in pairs(v) do
+			print(m, " ", n)
+		end
+		-- if v.name == name then
+			-- return v;
+		-- end
 	end
 end
 

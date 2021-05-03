@@ -1,0 +1,4 @@
+ContextMenu_RU = {
+	ContextMenu_TrolleyContainer = "Тележка",
+	ContextMenu_GrabTrolley = "Взять тележку",
+}

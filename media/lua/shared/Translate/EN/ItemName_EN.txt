@@ -1,5 +1,3 @@
 ItemName_EN = {
-    ItemName_Base.Jagdkommando = "Knife 'Jagdkommando'",
-	ItemName_Base.JagdkommandoOnCase = "Knife 'Jagdkommando' on scabbard",
-	ItemName_Base.JagdkommandoCase = "Scabbard 'Jagdkommando'",
+    ItemName_Base.TrolleyContainer = "Trolley",
 }
