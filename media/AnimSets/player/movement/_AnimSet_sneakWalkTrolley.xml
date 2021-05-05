@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<animNode x_extends="sneakWalk.xml">
+	<m_Name>sneakWalkTrolley</m_Name>
+	<m_AnimName>Bob_WalkSneak_Trolley</m_AnimName>
+	<m_Conditions />
+	<m_Conditions />
+	<m_Conditions>
+		<m_Name>Weapon</m_Name>
+		<m_Type>STRING</m_Type>
+		<m_StringValue>trolley</m_StringValue>
+	</m_Conditions>
+	<m_2DBlends>
+		<m_AnimName>Bob_WalkSneak_Trolley</m_AnimName>
+	</m_2DBlends>
+	<m_2DBlends>
+		<m_AnimName>Bob_WalkSneak_Trolley</m_AnimName>
+	</m_2DBlends>
+	<m_2DBlends>
+		<m_AnimName>Bob_WalkSneak_Trolley</m_AnimName>
+	</m_2DBlends>
+	<m_2DBlends>
+		<m_AnimName>Bob_WalkSneak_Trolley</m_AnimName>
+	</m_2DBlends>
+	<m_2DBlends>
+		<m_AnimName>Bob_WalkSneak_Trolley</m_AnimName>
+	</m_2DBlends>
+	<m_2DBlends>
+		<m_AnimName>Bob_WalkSneak_Trolley</m_AnimName>
+	</m_2DBlends>
+	<m_Transitions>
+		<m_Target>sneakidleTrolley</m_Target>
+		<m_AnimName>Bob_WalkSneak_Trolley</m_AnimName>
+	</m_Transitions>
+	<m_Transitions>
+		<m_Target>strafeTrolley</m_Target>
+		<m_AnimName>Bob_WalkSneak_Trolley</m_AnimName>
+	</m_Transitions>
+	<m_Transitions>
+		<m_Target>sprintTrolley</m_Target>
+		<m_AnimName>Bob_WalkSneak_Trolley</m_AnimName>
+	</m_Transitions>
+	<m_Transitions>
+		<m_Target>walktrolley</m_Target>
+	</m_Transitions>
+	<m_Transitions />
+	<m_Transitions>
+		<m_Target>strafeTrolley</m_Target>
+	</m_Transitions>
+</animNode>
