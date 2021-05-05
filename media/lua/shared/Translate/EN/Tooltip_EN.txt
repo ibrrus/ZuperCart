@@ -1,4 +1,0 @@
-Tooltip_EN = {
-    Tooltip_item_Jagdkommando = "Spiral knife with three blades. If screwed into<br>the scabbard it can be used as a baton.",
-	Tooltip_item_JagdkommandoCase = "Scabbard for spiral knife 'Jagdkommando'.<br>Allows you to use the knife as a baton",
-}

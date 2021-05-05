@@ -258,8 +258,6 @@ function ISWorldObjectContextMenu.getWorldObjectsOnSquares(squares, worldObjects
 end
 
 function TrolleyOnFillWorldObjectContextMenu(player, context, worldobjects, test)
-	-- print(test)
-	-- print(context)
 	local playerObj = getSpecificPlayer(player)
 	local squares = {}
 	local doneSquare = {}
@@ -292,7 +290,7 @@ function TrolleyOnFillWorldObjectContextMenu(player, context, worldobjects, test
 	end
 	if #worldObjects == 0 then return false end
 	for _,worldObject in ipairs(worldObjects) do
-		if worldObject:getItem():getType() == "TrolleyContainer" then
+		if worldObject:getItem():getType() == "TrolleyContainer" or worldObject:getItem():getType() == "TrolleyContainer2" then
 			-- context:removeOption(context:getOptionFromName(getText("ContextMenu_Grab")))
 			-- worldObject:getItem():setContainer(nil)
 			-- print(worldObject:getItem():getContainer())
@@ -341,7 +339,7 @@ end
 
 -- Events.OnEquipPrimary.Add(TrolleyOnEquipPrimary);
 -- Events.OnEquipSecondary.Add(TrolleyOnEquipSecondary);
--- Events.OnFillWorldObjectContextMenu.Add(TrolleyOnFillWorldObjectContextMenu);
+Events.OnFillWorldObjectContextMenu.Add(TrolleyOnFillWorldObjectContextMenu);
 Events.OnFillInventoryObjectContextMenu.Add(trolleyContext);
 Events.OnTick.Add(onEquipTrolleyTick);
 Events.OnRefreshInventoryWindowContainers.Add(addTrolleyButton);

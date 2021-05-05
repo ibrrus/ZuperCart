@@ -1,4 +1,0 @@
-Recipe_RU = {
-	Recipe_Remove_knife = "Выкрутить из ножен",
-	Recipe_Sheath_knife = "Вкрутить в ножны",
-}

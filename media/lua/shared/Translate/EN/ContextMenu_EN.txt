@@ -1,3 +1,4 @@
 ContextMenu_EN = {
     ContextMenu_TrolleyContainer = "Trolley",
+	ContextMenu_GrabTrolley = "Take trolley",
 }

@@ -1,3 +1,4 @@
 ItemName_EN = {
     ItemName_Base.TrolleyContainer = "Trolley",
+	ItemName_Base.TrolleyContainer2 = "Trolley",
 }

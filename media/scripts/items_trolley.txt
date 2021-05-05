@@ -43,10 +43,10 @@ module Base
 	item TrolleyContainer
     {
 		WeightReduction	=	100,
-		Weight = 24,
+		Weight = 26,
 		RequiresEquippedBothHands = true,
 		Type	=	Container,
-		Capacity	=	79,
+		Capacity	=	75,
 		Icon = Trolley,
 		UseWorldItem = true,
 		ScaleWorldIcon = 0.47,
@@ -60,14 +60,14 @@ module Base
 	item TrolleyContainer2
     {
 		WeightReduction	=	100,
-		Weight = 24,
+		Weight = 26,
 		RequiresEquippedBothHands = true,
 		Type	=	Container,
-		Capacity	=	79,
+		Capacity	=	75,
 		Icon = Trolley2,
 		UseWorldItem = true,
 		ScaleWorldIcon = 0.47,
-		WorldStaticModel = TrolleyModel,
+		WorldStaticModel = TrolleyModel2,
 		DisplayName	=	Trolley,
         RunSpeedModifier = 0.8,
 		StaticModel = TrolleyModel2,
