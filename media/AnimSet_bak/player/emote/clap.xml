@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<animNode x_extends="looped.xml">
+	<m_Name>clapTrolley</m_Name>
+	<m_AnimName>Bob_EmoteClap</m_AnimName>
+	<m_SpeedScale>0.60</m_SpeedScale>
+	<m_Conditions>
+		<m_StringValue>clap</m_StringValue>
+	</m_Conditions>
+</animNode>

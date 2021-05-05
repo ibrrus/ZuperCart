@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<animNode x_extends="SneakWipeHead.xml">
+	<m_Name>SneakWipeHeadTrolley</m_Name>
+	<m_AnimName>Bob_IdleTrolley</m_AnimName>
+	<m_deferredBoneAxis>Y</m_deferredBoneAxis>
+	<m_Conditions />
+	<m_Conditions />
+	<m_Conditions>
+		<m_Name>WeaponTrolley</m_Name>
+		<m_Type>STRING</m_Type>
+		<m_StringValue>trolley</m_StringValue>
+	</m_Conditions>
+</animNode>

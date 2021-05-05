@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<animNode x_extends="moveout.xml">
+	<m_Name>moveoutTrolley</m_Name>
+	<m_AnimName>Bob_Signal_1H_MoveOut</m_AnimName>
+	<m_SpeedScale>1.04</m_SpeedScale>
+	<m_Conditions />
+	<m_Conditions>
+		<m_Name>Weapon</m_Name>
+		<m_Type>STRING</m_Type>
+		<m_StringValue>trolley</m_StringValue>
+	</m_Conditions>
+</animNode>
