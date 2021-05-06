@@ -1,5 +1,7 @@
-module Base
+module TMC
 {
+	imports {Base}
+	
 	model TrolleyModel
 	{
 		mesh = weapons/2handed/trolley|cart,
@@ -25,14 +27,40 @@ module Base
 			rotate = 0.0000 90.0000 0.0000,
 		}
 	}
+	
+	model CartModel
+	{
+		mesh = weapons/2handed/trolley|cart02,
+		texture = weapons/2handed/cart,
+		scale = 0.3,
+		invertX = true,
+		attachment world
+		{
+			offset = 0.0000 0.0000 0.0000,
+			rotate = 0.0000 90.0000 0.0000,
+		}
+	}
+	
+	model CartModel2
+	{
+		mesh = weapons/2handed/trolley|cart02WithBaggage,
+		texture = weapons/2handed/cart,
+		scale = 0.3,
+		invertX = true,
+		attachment world
+		{
+			offset = 0.0000 0.0000 0.0000,
+			rotate = 0.0000 90.0000 0.0000,
+		}
+	}
 
 	item Trolley
     {
 		Type	=	Weapon,
 		Weight = 0.1,
 		RequiresEquippedBothHands = true,
-		DisplayName	=	Trolley,
-		WeaponSprite	=	TrolleyModel2,
+		DisplayName	=	TestItem,
+		WeaponSprite	=	TMC.TrolleyModel2,
         ConditionMax	=	15,
         Icon	=	Trolley,
         RunAnim	=	Run_Weapon2,
@@ -40,6 +68,22 @@ module Base
         BaseSpeed = 1,
         TwoHandWeapon = TRUE,
     }
+	
+	item TrolleyCart
+    {
+		Type	=	Weapon,
+		Weight = 0.1,
+		RequiresEquippedBothHands = true,
+		DisplayName	=	TestItem2,
+		WeaponSprite	=	TMC.CartModel2,
+        ConditionMax	=	15,
+        Icon	=	Trolley,
+        RunAnim	=	Run_Weapon2,
+        MetalValue = 150,
+        BaseSpeed = 1,
+        TwoHandWeapon = TRUE,
+    }
+	
 	item TrolleyContainer
     {
 		WeightReduction	=	100,
@@ -50,12 +94,12 @@ module Base
 		Icon = Trolley,
 		UseWorldItem = true,
 		ScaleWorldIcon = 0.47,
-		WorldStaticModel = TrolleyModel,
+		WorldStaticModel = TMC.TrolleyModel,
 		DisplayName	=	Trolley,
         RunSpeedModifier = 0.8,
-		StaticModel = TrolleyModel,
-		ReplaceInPrimaryHand = TrolleyModel Trolley,
-		ReplaceInSecondHand = TrolleyModel Trolley,
+		StaticModel = TMC.TrolleyModel,
+		ReplaceInPrimaryHand = TMC.TrolleyModel Trolley,
+		ReplaceInSecondHand = TMC.TrolleyModel Trolley,
     }
 	item TrolleyContainer2
     {
@@ -67,11 +111,47 @@ module Base
 		Icon = Trolley2,
 		UseWorldItem = true,
 		ScaleWorldIcon = 0.47,
-		WorldStaticModel = TrolleyModel2,
+		WorldStaticModel = TMC.TrolleyModel2,
 		DisplayName	=	Trolley,
         RunSpeedModifier = 0.8,
-		StaticModel = TrolleyModel2,
-		ReplaceInPrimaryHand = TrolleyModel2 Trolley,
-		ReplaceInSecondHand = TrolleyModel2 Trolley,
+		StaticModel = TMC.TrolleyModel2,
+		ReplaceInPrimaryHand = TMC.TrolleyModel2 Trolley,
+		ReplaceInSecondHand = TMC.TrolleyModel2 Trolley,
     }
+	
+	item CartContainer
+    {
+		WeightReduction	=	100,
+		Weight = 26,
+		RequiresEquippedBothHands = true,
+		Type	=	Container,
+		Capacity	=	60,
+		Icon = TMCart,
+		UseWorldItem = true,
+		ScaleWorldIcon = 0.47,
+		WorldStaticModel = CartModel,
+		DisplayName	=	Cart,
+        RunSpeedModifier = 0.8,
+		StaticModel = TMC.CartModel,
+		ReplaceInPrimaryHand = TMC.CartModel Trolley,
+		ReplaceInSecondHand = TMC.CartModel Trolley,
+    }
+	item CartContainer2
+    {
+		WeightReduction	=	100,
+		Weight = 26,
+		RequiresEquippedBothHands = true,
+		Type	=	Container,
+		Capacity	=	60,
+		Icon = TMCart2,
+		UseWorldItem = true,
+		ScaleWorldIcon = 0.47,
+		WorldStaticModel = TMC.CartModel2,
+		DisplayName	=	Cart,
+        RunSpeedModifier = 0.8,
+		StaticModel = TMC.CartModel2,
+		ReplaceInPrimaryHand = TMC.CartModel2 Trolley,
+		ReplaceInSecondHand = TMC.CartModel2 Trolley,
+    }
+	
 }
