@@ -122,7 +122,7 @@ function ISTakeTrolley:new (character, item, time)
 	o.item = item;
 	o.stopOnWalk = true;
 	o.stopOnRun = true;
-	print("time?")		   
+	-- print("time?")		   
 	o.maxTime = time;
 	o.loopedAction = true;
 	o:checkQueueList();
