@@ -70,14 +70,21 @@ function onEquipTrolleyTick()
 				end
 			end
 			
-			-- Задание переменной для анимации
-			if playerObj:getVariableString("Weapon") ~= "trolley" then -- print(getPlayer():getVariableString("Weapon"))
+			if playerObj:getVariableString("Weapon") ~= "trolley" then -- print(getPlayer():getVariableString("Weapon"))		
+				-- Задание переменной для анимации
 				local _item = playerObj:getPrimaryHandItem()
 				if _item and (_item:getScriptItem():getName() == "TrolleyContainer" or 
 							  _item:getScriptItem():getName() == "TrolleyContainer2" or 
 							  _item:getScriptItem():getName() == "CartContainer" or 
 							  _item:getScriptItem():getName() == "CartContainer2") then
 					playerObj:setVariable("Weapon", "trolley")
+				end
+				-- Разблокировка меню эмоций
+				if playerObj:getModData()["blockEmote"] or playerObj:getModData()["blockShout"] then
+					getCore():addKeyBinding("Emote", playerObj:getModData()["blockEmote"])
+					getCore():addKeyBinding("Shout", playerObj:getModData()["blockShout"])
+					playerObj:getModData()["blockEmote"] = nil
+					playerObj:getModData()["blockShout"] = nil
 				end
 			else
 				-- Выбрасывание тележки при столкновениях и пр.
@@ -88,6 +95,13 @@ function onEquipTrolleyTick()
 					playerObj:setPrimaryHandItem(nil);
 					playerObj:setSecondaryHandItem(nil);
 					sqr:AddWorldInventoryItem(trol, 0, 0, 0);
+				end
+				-- Блокировка меню эмоций
+				if not playerObj:getModData()["blockEmote"] or not playerObj:getModData()["blockShout"] then
+					playerObj:getModData()["blockEmote"] = getCore():getKey("Emote")
+					playerObj:getModData()["blockShout"] = getCore():getKey("Shout")
+					getCore():addKeyBinding("Emote", nil)
+					getCore():addKeyBinding("Shout", nil)
 				end
 			end
 		end
@@ -187,6 +201,18 @@ function isForceDropHeavyItem(item)
     return (item ~= nil) and (item:getType() == "Generator" or item:getType() == "CorpseMale" or item:getType() == "CorpseFemale" or item:getFullType() == TrolleyList[1] or item:getFullType() == TrolleyList[2] or item:getFullType() == TrolleyList[3] or item:getFullType() == TrolleyList[4])
 end
 
+function onEquipTrolleyCallout(key)
+	-- print(key)
+	-- print(playerObj:getModData()["blockShout"])
+	-- print("---")
+	playerObj = getSpecificPlayer(0)
+	if playerObj:getVariableString("Weapon") == "trolley" and key == playerObj:getModData()["blockShout"] then
+		
+		playerObj:Callout()
+	end
+end
+
 Events.OnFillWorldObjectContextMenu.Add(TrolleyOnFillWorldObjectContextMenu);
 Events.OnTick.Add(onEquipTrolleyTick);
+Events.OnKeyPressed.Add(onEquipTrolleyCallout)
 -- Events.OnRefreshInventoryWindowContainers.Add(addTrolleyButton);
