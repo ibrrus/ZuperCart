@@ -7,6 +7,11 @@ TrolleyList = {
 "TMC.CartContainer2",
 }
 
+function ISContextMenu:updateOptionTrolley(id, name, target, onSelect, param1, param2, param3, param4, param5, param6, param7, param8, param9, param10)
+	local option = self:allocOption(name, target, onSelect, param1, param2, param3, param4, param5, param6, param7, param8, param9, param10);
+	self.options[id] = option;
+	return option;
+end
 
 function onEquipTrolleyTick()
     local playersSum = getNumActivePlayers()
@@ -177,7 +182,7 @@ function TrolleyOnFillWorldObjectContextMenu(player, context, worldobjects, test
 			or (trolleyName == TrolleyList[3]) or (trolleyName == TrolleyList[4]) then
 			local old_option_update = context:getOptionFromName(getText("ContextMenu_Grab"))
 			if old_option_update then
-				context:updateOption(old_option_update.id, getText("ContextMenu_GrabTrolley"), playerObj, ISWorldObjectContextMenu.equipTrolley, worldObject)
+				context:updateOptionTrolley(old_option_update.id, getText("ContextMenu_GrabTrolley"), playerObj, ISWorldObjectContextMenu.equipTrolley, worldObject)
 				return
 			end				
 		end
@@ -207,7 +212,6 @@ function onEquipTrolleyCallout(key)
 	-- print("---")
 	playerObj = getSpecificPlayer(0)
 	if playerObj:getVariableString("Weapon") == "trolley" and key == playerObj:getModData()["blockShout"] then
-		
 		playerObj:Callout()
 	end
 end
