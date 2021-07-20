@@ -97,9 +97,15 @@ function onEquipTrolleyTick()
 					sqr = playerObj:getSquare()
 					trol = playerObj:getPrimaryHandItem()
 					playerObj:getInventory():Remove(trol)
+					local pdata = getPlayerData(playerObj:getPlayerNum());
+					if pdata ~= nil then
+						pdata.playerInventory:refreshBackpacks();
+						pdata.lootInventory:refreshBackpacks();
+					end
 					playerObj:setPrimaryHandItem(nil);
 					playerObj:setSecondaryHandItem(nil);
 					sqr:AddWorldInventoryItem(trol, 0, 0, 0);
+					
 				end
 				-- Блокировка меню эмоций
 				if not playerObj:getModData()["blockEmote"] or not playerObj:getModData()["blockShout"] then
@@ -211,8 +217,10 @@ function onEquipTrolleyCallout(key)
 	-- print(playerObj:getModData()["blockShout"])
 	-- print("---")
 	playerObj = getSpecificPlayer(0)
-	if playerObj:getVariableString("Weapon") == "trolley" and key == playerObj:getModData()["blockShout"] then
-		playerObj:Callout()
+	if playerObj then
+		if playerObj:getVariableString("Weapon") == "trolley" and key == playerObj:getModData()["blockShout"] then
+			playerObj:Callout()
+		end
 	end
 end
 
