@@ -53,12 +53,18 @@ else
 	table.insert(ProceduralDistributions["list"]["JanitorTools"].items, 0.5);
 	table.insert(ProceduralDistributions["list"]["CrateTools"].items, "TMC.TrolleyContainer");
 	table.insert(ProceduralDistributions["list"]["CrateTools"].items, 1);
-	table.insert(Distributions[1]["toolstore"]["counter"].items, "TMC.TrolleyContainer");
-	table.insert(Distributions[1]["toolstore"]["counter"].items, 1);
-	table.insert(Distributions[1]["toolstore"]["counter"].items, "TMC.CartContainer");
-	table.insert(Distributions[1]["toolstore"]["counter"].items, 1);
-	table.insert(Distributions[1]["Farmer"]["counter"].items, "TMC.TrolleyContainer");
-	table.insert(Distributions[1]["Farmer"]["counter"].items, 1);
+	table.insert(ProceduralDistributions["list"]["ToolStoreFarming"].items, "TMC.TrolleyContainer");
+	table.insert(ProceduralDistributions["list"]["ToolStoreFarming"].items, 1);
+	table.insert(ProceduralDistributions["list"]["ToolStoreFarming"].items, "TMC.CartContainer");
+	table.insert(ProceduralDistributions["list"]["ToolStoreFarming"].items, 1);
+	table.insert(ProceduralDistributions["list"]["ToolStoreMisc"].items, "TMC.TrolleyContainer");
+	table.insert(ProceduralDistributions["list"]["ToolStoreMisc"].items, 1);
+	table.insert(ProceduralDistributions["list"]["ToolStoreMisc"].items, "TMC.CartContainer");
+	table.insert(ProceduralDistributions["list"]["ToolStoreMisc"].items, 1);
+	table.insert(ProceduralDistributions["list"]["ToolStoreTools"].items, "TMC.TrolleyContainer");
+	table.insert(ProceduralDistributions["list"]["ToolStoreTools"].items, 1);
+	table.insert(ProceduralDistributions["list"]["ToolStoreTools"].items, "TMC.CartContainer");
+	table.insert(ProceduralDistributions["list"]["ToolStoreTools"].items, 1);
 end
 
 
