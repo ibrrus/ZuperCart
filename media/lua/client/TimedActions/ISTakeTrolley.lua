@@ -46,6 +46,11 @@ function ISTakeTrolley:perform()
 	self.action:setLoopedAction(false);
 	self.character:setPrimaryHandItem(self.item:getItem());
 	self.character:setSecondaryHandItem(self.item:getItem());
+	local pdata = getPlayerData(self.character:getPlayerNum());
+	if pdata ~= nil then
+		pdata.playerInventory:refreshBackpacks();
+		pdata.lootInventory:refreshBackpacks();
+	end
 	-- needed to remove from queue / start next.
 	ISBaseTimedAction.perform(self);
 

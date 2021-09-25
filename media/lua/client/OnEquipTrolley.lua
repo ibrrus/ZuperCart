@@ -7,11 +7,29 @@ TrolleyList = {
 "TMC.CartContainer2",
 }
 
+local seatNameTable = {"SeatFrontLeft", "SeatFrontRight", "SeatMiddleLeft", "SeatMiddleRight", "SeatRearLeft", "SeatRearRight"}
+
 function ISContextMenu:updateOptionTrolley(id, name, target, onSelect, param1, param2, param3, param4, param5, param6, param7, param8, param9, param10)
 	local option = self:allocOption(name, target, onSelect, param1, param2, param3, param4, param5, param6, param7, param8, param9, param10);
 	self.options[id] = option;
 	return option;
 end
+
+function ISContextMenu:removeOptionTrolley(option)
+	if option then
+		table.insert(self.optionPool, self.options[option.id])
+		self.options[option.id] =  nil;
+		for i = option.id, self.numOptions - 1 do
+			self.options[i] = self.options[i+1]
+			if self.options[i] then
+				self.options[i].id = i
+			end
+		end
+		self.numOptions = self.numOptions - 1;
+		self:calcHeight()
+	end
+end
+
 
 function onEquipTrolleyTick()
     local playersSum = getNumActivePlayers()
@@ -92,10 +110,18 @@ function onEquipTrolleyTick()
 					playerObj:getModData()["blockShout"] = nil
 				end
 			else
+				-- Удаление задвоенной тележки
+				local _item = playerObj:getPrimaryHandItem()
+				if _item and not (_item:getContainer() == playerObj:getInventory()) then
+					playerObj:setPrimaryHandItem(nil)
+					playerObj:setSecondaryHandItem(nil)
+				end
 				-- Выбрасывание тележки при столкновениях и пр.
-				if not (playerObj:getCurrentState() == IdleState.instance()) then
-					sqr = playerObj:getSquare()
-					trol = playerObj:getPrimaryHandItem()
+				-- print(playerObj:getCurrentState())
+				if not (playerObj:getCurrentState() == IdleState.instance() or 
+						playerObj:getCurrentState() == PlayerAimState.instance()) then
+					local sqr = playerObj:getSquare()
+					local trol = playerObj:getPrimaryHandItem()
 					playerObj:getInventory():Remove(trol)
 					local pdata = getPlayerData(playerObj:getPlayerNum());
 					if pdata ~= nil then
@@ -105,7 +131,6 @@ function onEquipTrolleyTick()
 					playerObj:setPrimaryHandItem(nil);
 					playerObj:setSecondaryHandItem(nil);
 					sqr:AddWorldInventoryItem(trol, 0, 0, 0);
-					
 				end
 				-- Блокировка меню эмоций
 				if not playerObj:getModData()["blockEmote"] or not playerObj:getModData()["blockShout"] then
@@ -114,6 +139,26 @@ function onEquipTrolleyTick()
 					getCore():addKeyBinding("Emote", nil)
 					getCore():addKeyBinding("Shout", nil)
 				end
+				-- Выбрасывание тележки в машине
+				if playerObj:getVehicle() then
+					local vehicle = playerObj:getVehicle()
+					local areaCenter = vehicle:getAreaCenter(seatNameTable[vehicle:getSeat(playerObj)+1])
+					-- print(areaCenter)
+					if areaCenter then 
+						local sqr = getCell():getGridSquare(areaCenter:getX(), areaCenter:getY(), vehicle:getZ())
+						local trol = playerObj:getPrimaryHandItem()
+						playerObj:getInventory():Remove(trol)
+						local pdata = getPlayerData(playerObj:getPlayerNum());
+						if pdata ~= nil then
+							pdata.playerInventory:refreshBackpacks();
+							pdata.lootInventory:refreshBackpacks();
+						end
+						playerObj:setPrimaryHandItem(nil);
+						playerObj:setSecondaryHandItem(nil);
+						sqr:AddWorldInventoryItem(trol, 0, 0, 0);
+					end
+				end
+				
 			end
 		end
 		-- print(playerObj:getCurrentState())
@@ -208,14 +253,26 @@ ISWorldObjectContextMenu.equipTrolley = function(playerObj, WItem)
 	end
 end
 
+local oldForceDropHeavyItem = isForceDropHeavyItem
 function isForceDropHeavyItem(item)
-    return (item ~= nil) and (item:getType() == "Generator" or item:getType() == "CorpseMale" or item:getType() == "CorpseFemale" or item:getFullType() == TrolleyList[1] or item:getFullType() == TrolleyList[2] or item:getFullType() == TrolleyList[3] or item:getFullType() == TrolleyList[4])
+	if item and (item:getFullType() == TrolleyList[1] or item:getFullType() == TrolleyList[2] or item:getFullType() == TrolleyList[3] or item:getFullType() == TrolleyList[4]) then
+		return true
+	else
+		return oldForceDropHeavyItem(item)
+	end
 end
 
+local function trolleyBlockBuildOptions(player, context, worldobjects, test)
+	local playerObj = getSpecificPlayer(player)
+	if playerObj:getVariableString("Weapon") == "trolley" then
+		context:removeOptionTrolley(context:getOptionFromName(getText("ContextMenu_MetalWelding")))
+		context:removeOptionTrolley(context:getOptionFromName(getText("ContextMenu_Build")))
+	end
+end
+
+Events.OnFillWorldObjectContextMenu.Add(trolleyBlockBuildOptions)
+
 function onEquipTrolleyCallout(key)
-	-- print(key)
-	-- print(playerObj:getModData()["blockShout"])
-	-- print("---")
 	playerObj = getSpecificPlayer(0)
 	if playerObj then
 		if playerObj:getVariableString("Weapon") == "trolley" and key == playerObj:getModData()["blockShout"] then
