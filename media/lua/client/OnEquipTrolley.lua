@@ -281,7 +281,7 @@ function onEquipTrolleyCallout(key)
 	end
 end
 
-Events.OnFillWorldObjectContextMenu.Add(TrolleyOnFillWorldObjectContextMenu);
-Events.OnTick.Add(onEquipTrolleyTick);
-Events.OnKeyPressed.Add(onEquipTrolleyCallout)
+-- Events.OnFillWorldObjectContextMenu.Add(TrolleyOnFillWorldObjectContextMenu);
+-- Events.OnTick.Add(onEquipTrolleyTick);
+-- Events.OnKeyPressed.Add(onEquipTrolleyCallout)
 -- Events.OnRefreshInventoryWindowContainers.Add(addTrolleyButton);
