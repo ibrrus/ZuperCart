@@ -116,21 +116,12 @@
 	</m_2DBlendTri>
 	<m_Transitions>
 		<m_Target>idlesneaktrolleyright</m_Target>
-		<m_AnimName>Bob_WalkSneak_Trolley</m_AnimName>
-		<m_blendInTime>0.1</m_blendInTime>
-		<m_blendOutTime>0.1</m_blendOutTime>
 	</m_Transitions>
 	<m_Transitions>
 		<m_Target>walksneaktrolleyright</m_Target>
-		<m_AnimName>Bob_WalkSneak_Trolley</m_AnimName>
-		<m_blendInTime>0.1</m_blendInTime>
-		<m_blendOutTime>0.1</m_blendOutTime>
 	</m_Transitions>
 	<m_Transitions>
 		<m_Target>runtrolleyright</m_Target>
-		<m_AnimName>Bob_RunTrolley</m_AnimName>
-		<m_blendInTime>0.1</m_blendInTime>
-		<m_blendOutTime>0.1</m_blendOutTime>
 	</m_Transitions>
 	<m_SubStateBoneWeights>
 		<boneName>Bip01</boneName>

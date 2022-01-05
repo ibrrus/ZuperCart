@@ -13,15 +13,15 @@
 	</m_Conditions>
 	<m_Transitions>
 		<m_Target>idlesneaktrolleyright</m_Target>
-		<m_AnimName>Bob_IdleSneak_Trolley_ArmRaise</m_AnimName>
-		<m_blendInTime>0.1</m_blendInTime>
-		<m_blendOutTime>0.1</m_blendOutTime>
 	</m_Transitions>
 	<m_Transitions>
 		<m_Target>aimtrolleyright</m_Target>
 	</m_Transitions>
 	<m_Transitions>
-		<m_Target>idlesneaklowtrolleyright</m_Target>
+		<m_Target>walktrolleyright</m_Target>
+	</m_Transitions>
+	<m_Transitions>
+		<m_Target>runtrolleyright</m_Target>
 	</m_Transitions>
 	<m_SubStateBoneWeights>
 		<boneName>Bip01</boneName>
