@@ -1,24 +1,15 @@
+v.1.08
+2021-01-06
 
+Переделана логика активации анимации для корректного отображения в мультиплеере.
+Снова разрешено спринтовать с тележкой.
+Добавлена возможность быстро выбросить тележку (удержание правой кнопки мыши).
+Добавлена возможность поднимать полностью заполненную тележку через контекстное меню инвентаря.
 
-
-
--------------------
-
-v.1.08dev2
-2021-01-05
-
-Удалены все переходы между анимациями.
-
-Removed all transitions between animations.
-
--------------------
-
-v.1.08dev1
-2021-01-03
-
-Переделана логика активации анимации.
-
-Reworked the animation activation logic.
+Reworked animation activation logic for correct display in multiplayer.
+Allowed to sprint with the cart/trolley again.
+Added ability to quickly dump cart/trolley (holding right mouse button).
+Added ability to pick up a fully filled cart/trolley through the inventory context menu.
 
 -------------------
 

@@ -2,10 +2,12 @@
 <animNode>
 	<m_Name>runsneaktrolleyright</m_Name>
 	<m_AnimName>Bob_RunSneak_Trolley</m_AnimName>
-	<m_SpeedScale>0.92</m_SpeedScale>
-	<m_BlendTime>0.10</m_BlendTime>
-	<m_Scalar>WalkInjury</m_Scalar>
-	<m_Scalar2>WalkSpeed</m_Scalar2>
+	<m_SpeedScale>1.0</m_SpeedScale>
+	<m_BlendTime>0.50</m_BlendTime>
+	<m_deferredBoneAxis>Y</m_deferredBoneAxis>
+	<m_Priority>10</m_Priority>
+	<!-- <m_Scalar>WalkInjury</m_Scalar> -->
+	<!-- <m_Scalar2>WalkSpeed</m_Scalar2> -->
 	<m_Conditions>
 		<m_Name>RightHandMask</m_Name>
 		<m_Type>STRING</m_Type>
@@ -115,13 +117,52 @@
 		<node3>2</node3>
 	</m_2DBlendTri>
 	<m_Transitions>
-		<m_Target>idlesneaktrolleyright</m_Target>
+		<m_Target>sprinttrolleyright</m_Target>
+		<m_blendInTime>0.1</m_blendInTime>
+		<m_blendOutTime>0.2</m_blendOutTime>
+		<!-- <m_SpeedScale>0.3</m_SpeedScale> -->
 	</m_Transitions>
 	<m_Transitions>
-		<m_Target>walksneaktrolleyright</m_Target>
+		<m_Target>aimtrolleyright</m_Target>
+		<m_blendInTime>0.1</m_blendInTime>
+		<m_blendOutTime>0.2</m_blendOutTime>
+		<!-- <m_SpeedScale>0.3</m_SpeedScale> -->
+	</m_Transitions>
+	<m_Transitions>
+		<m_Target>holdingtrolleyright</m_Target>
+		<m_blendInTime>0.1</m_blendInTime>
+		<m_blendOutTime>0.2</m_blendOutTime>
+		<!-- <m_SpeedScale>0.3</m_SpeedScale> -->
+	</m_Transitions>
+	<m_Transitions>
+		<m_Target>idlesneaktrolleyright</m_Target>
+		<m_blendInTime>0.1</m_blendInTime>
+		<m_blendOutTime>0.2</m_blendOutTime>
+		<!-- <m_SpeedScale>0.3</m_SpeedScale> -->
 	</m_Transitions>
 	<m_Transitions>
 		<m_Target>runtrolleyright</m_Target>
+		<m_blendInTime>0.1</m_blendInTime>
+		<m_blendOutTime>0.2</m_blendOutTime>
+		<!-- <m_SpeedScale>0.3</m_SpeedScale> -->
+	</m_Transitions>
+	<m_Transitions>
+		<m_Target>strafetrolleyright</m_Target>
+		<m_blendInTime>0.1</m_blendInTime>
+		<m_blendOutTime>0.2</m_blendOutTime>
+		<!-- <m_SpeedScale>0.3</m_SpeedScale> -->
+	</m_Transitions>
+	<m_Transitions>
+		<m_Target>walksneaktrolleyright</m_Target>
+		<m_blendInTime>0.1</m_blendInTime>
+		<m_blendOutTime>0.2</m_blendOutTime>
+		<!-- <m_SpeedScale>0.3</m_SpeedScale> -->
+	</m_Transitions>
+	<m_Transitions>
+		<m_Target>walktrolleyright</m_Target>
+		<m_blendInTime>0.1</m_blendInTime>
+		<m_blendOutTime>0.2</m_blendOutTime>
+		<!-- <m_SpeedScale>0.3</m_SpeedScale> -->
 	</m_Transitions>
 	<m_SubStateBoneWeights>
 		<boneName>Bip01</boneName>
@@ -132,5 +173,8 @@
 	</m_SubStateBoneWeights>
 	<m_SubStateBoneWeights>
 		<boneName>Bip01_Prop1</boneName>
+	</m_SubStateBoneWeights>
+	<m_SubStateBoneWeights>
+		<boneName>Bip01_Prop2</boneName>
 	</m_SubStateBoneWeights>
 </animNode>
