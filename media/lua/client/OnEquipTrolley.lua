@@ -7,8 +7,6 @@ TrolleyList = {
 "TMC.CartContainer2",
 }
 
-local seatNameTable = {"SeatFrontLeft", "SeatFrontRight", "SeatMiddleLeft", "SeatMiddleRight", "SeatRearLeft", "SeatRearRight"}
-
 function onEquipTrolleyTick()
     local playersSum = getNumActivePlayers()
 	for playerNum = 0, playersSum - 1 do
@@ -89,7 +87,7 @@ function onEquipTrolleyTick()
 				-- Выбрасывание тележки в машине
 				if playerObj:getVehicle() then
 					local vehicle = playerObj:getVehicle()
-					local areaCenter = vehicle:getAreaCenter(seatNameTable[vehicle:getSeat(playerObj)+1])
+					local areaCenter = vehicle:getAreaCenter(string.sub(vehicle:getPartForSeatContainer(vehicle:getSeat(playerObj)):getId(), 5))
 					-- print(areaCenter)
 					if areaCenter then 
 						local sqr = getCell():getGridSquare(areaCenter:getX(), areaCenter:getY(), vehicle:getZ())
