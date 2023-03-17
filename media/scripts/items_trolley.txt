@@ -4,7 +4,7 @@ module TMC
 	
 	item TrolleyContainer
     {
-		Weight 					= 1,
+		Weight 					= 13,
 		Type					= Container,
 		Capacity				= 49,
 		WeightReduction			= 100,
@@ -20,7 +20,7 @@ module TMC
 	
 	item TrolleyContainer2
     {
-		Weight 					= 1,
+		Weight 					= 13,
 		Type					= Container,
 		Capacity				= 49,
 		WeightReduction			= 100,
@@ -36,7 +36,7 @@ module TMC
 	
 	item CartContainer
     {
-		Weight 					= 1,
+		Weight 					= 13,
 		Type					= Container,
 		Capacity				= 49,
 		WeightReduction			= 100,
@@ -52,7 +52,7 @@ module TMC
 	
 	item CartContainer2
     {
-		Weight 					= 1,
+		Weight 					= 13,
 		Type					= Container,
 		Capacity				= 49,
 		WeightReduction			= 100,

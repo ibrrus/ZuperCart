@@ -1,7 +1,7 @@
-name=ZuperCart TEST v.1.09dev2
+name=ZuperCart TEST v.1.09
 poster=poster.png
 id=TMC_Trolley_test
 versionMin=41.51
 require=tsarslib_test
-description=Carts&Trolleys for best life.
+description=Carts & Trolleys for best life.
 url=
