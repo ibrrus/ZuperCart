@@ -138,7 +138,7 @@ ISWorldObjectContextMenu.equipTrolley = function(playerObj, WItem)
             ISTimedActionQueue.add(ISUnequipAction:new(playerObj, playerObj:getSecondaryHandItem(), 50));
         end
         -- local time = ISWorldObjectContextMenu.grabItemTime(playerObj, WItem)
-        ISTimedActionQueue.add(ISTakeTrolley:new(playerObj, WItem, 1))
+        ISTimedActionQueue.add(ISTakeTrolley:new(playerObj, WItem, 10))
     end
 end
 
